@@ -27,9 +27,10 @@ const handler = NextAuth({
         }
 
         // 3. Password Check karo
+        // ✅ FIX: yahan "|| ''" lagaya hai taaki TypeScript gussa na ho
         const isValid = await bcrypt.compare(
           credentials?.password || "",
-          user.password
+          user.password || "" 
         );
 
         if (!isValid) {
@@ -37,7 +38,7 @@ const handler = NextAuth({
         }
 
         // 4. Sab sahi hai, User return karo
-        // ✅ FIX: .toString() lagaya hai taaki TypeScript khush rahe
+        // ✅ FIX: .toString() lagaya hai ID ke liye
         return {
           id: user._id.toString(),
           name: user.name,
@@ -51,7 +52,7 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.role = (user as any).role;
-        token.id = user.id; // ID bhi token me daal dete hain safety ke liye
+        token.id = user.id;
       }
       return token;
     },
@@ -65,7 +66,7 @@ const handler = NextAuth({
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/login", // Humara custom login page yahan hoga
+    signIn: "/login",
   },
 });
 
