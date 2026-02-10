@@ -37,7 +37,13 @@ const handler = NextAuth({
         }
 
         // 4. Sab sahi hai, User return karo
-        return { id: user._id, name: user.name, email: user.email, role: user.role };
+        // ✅ FIX: .toString() lagaya hai taaki TypeScript khush rahe
+        return {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        };
       },
     }),
   ],
@@ -45,12 +51,14 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.role = (user as any).role;
+        token.id = user.id; // ID bhi token me daal dete hain safety ke liye
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         (session.user as any).role = token.role;
+        (session.user as any).id = token.id;
       }
       return session;
     },
