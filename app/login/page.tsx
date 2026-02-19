@@ -37,6 +37,9 @@ export default function Login() {
 
         <h2 className="text-2xl font-bold text-center text-white mb-2">Welcome Back</h2>
         <p className="text-slate-400 text-center text-sm mb-8">Enter the portal to manage your projects.</p>
+        <div className="text-center mb-8">
+          <Link href="/" className="text-xs text-slate-500 hover:text-slate-300 transition">← Back to Home</Link>
+        </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">

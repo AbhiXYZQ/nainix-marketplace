@@ -25,6 +25,7 @@ export default function Register() {
             <span className="text-xl font-bold text-white">Nainix.</span>
           </Link>
           <h2 className="text-2xl font-bold text-white">Join the Community</h2>
+          <p className="text-slate-500 text-sm mt-2"><Link href="/login" className="text-indigo-400 hover:text-white">Already a member? Sign in</Link></p>
         </div>
 
         {/* ROLE SELECTOR (Toggle) */}

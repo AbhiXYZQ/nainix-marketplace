@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import { MapPin, Clock, Star, MessageCircle, ShieldCheck, Check, Globe, Award, Calendar, ChevronRight, Zap, CheckCircle2 } from "lucide-react";
+import { MapPin, Clock, Star, MessageCircle, ShieldCheck, Check, Globe, Award, Calendar, ChevronRight, Zap, CheckCircle2, Home } from "lucide-react";
 export default function SellerProfile() {
   
   // --- MOCK DATA ---
@@ -23,14 +24,23 @@ export default function SellerProfile() {
   };
 
   const gigs = [
-    { title: "I will build a complete SaaS platform with Next.js 14", price: 250, image: "bg-indigo-900" },
-    { title: "I will create a high-converting landing page", price: 50, image: "bg-purple-900" },
-    { title: "I will integrate OpenAI/Gemini API into your website", price: 80, image: "bg-blue-900" }
+    { id: 1, title: "I will build a complete SaaS platform with Next.js 14", price: 250, image: "bg-indigo-900" },
+    { id: 2, title: "I will create a high-converting landing page", price: 50, image: "bg-purple-900" },
+    { id: 3, title: "I will integrate OpenAI/Gemini API into your website", price: 80, image: "bg-blue-900" }
   ];
 
   return (
     <main className="min-h-screen bg-slate-950 text-white font-sans selection:bg-indigo-500 selection:text-white pb-20">
       <Navbar />
+      
+      {/* Breadcrumbs */}
+      <div className="flex items-center gap-2 text-sm text-slate-500 pt-28 px-6 max-w-7xl mx-auto mb-4">
+        <Link href="/" className="hover:text-slate-300"><Home size={16} /></Link>
+        <span>/</span>
+        <Link href="/seller" className="hover:text-slate-300">Sellers</Link>
+        <span>/</span>
+        <span className="text-slate-300">{user.name}</span>
+      </div>
 
       {/* --- HERO BANNER (Professional Look) --- */}
       <div className="h-80 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">

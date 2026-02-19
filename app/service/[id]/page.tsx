@@ -1,22 +1,30 @@
 "use client";
 
+import { useState, use } from "react"; // 👈 'use' import kiya
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import { useState } from "react";
-import { Star, Clock, RefreshCcw, Check, MessageCircle, ShieldCheck, ChevronDown, Heart, Share2, ArrowRight } from "lucide-react";
-export default function ServiceDetails() {
+import { Star, Clock, RefreshCcw, Check, MessageCircle, ShieldCheck, ChevronDown, Heart, Share2, ArrowRight, Home } from "lucide-react";
+
+// 👇 Type update kiya: params ab Promise hai
+export default function ServiceDetails({ params }: { params: Promise<{ id: string }> }) {
+  
+  // 👇 Params ko unwrap kiya (Next.js 15+ requirement)
+  const { id } = use(params);
+
   const [selectedPackage, setSelectedPackage] = useState<'basic' | 'standard' | 'premium'>('basic');
 
-  // --- MOCK DATA (Asli data database se aayega) ---
+  // --- MOCK DATA ---
   const service = {
+    id: id, // 👈 Ab hum 'id' use karenge, 'params.id' nahi
     title: "I will build a modern Next.js website with Nebula Theme",
     rating: 5.0,
     reviews: 128,
     ordersInQueue: 4,
-    images: ["/gig-placeholder.jpg"], // Image placeholder handle karenge
+    images: ["/gig-placeholder.jpg"], 
     seller: {
       name: "Abhishek Kumar",
       level: "Top Rated",
-      image: "A", // Avatar fallback
+      image: "A",
       joined: "2025"
     },
     packages: {
@@ -40,40 +48,43 @@ export default function ServiceDetails() {
         {/* --- LEFT COLUMN (Details) --- */}
         <div className="lg:col-span-2 space-y-8">
           
-          {/* Breadcrumb & Title */}
-          <div>
-            <div className="flex items-center gap-2 text-sm text-slate-400 mb-4">
-              <span>Development</span> <span className="text-slate-600">/</span> <span>Web Development</span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4">{service.title}</h1>
-            
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-lg">
-                  {service.seller.image}
-                </div>
-                <div>
-                  <h3 className="font-bold text-sm hover:underline cursor-pointer">{service.seller.name}</h3>
-                  <p className="text-xs text-indigo-400 font-medium">{service.seller.level}</p>
-                </div>
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-2 text-sm text-slate-400 mb-4">
+             <Link href="/" className="hover:text-white"><Home size={14} /></Link> 
+             <span>/</span>
+             <span>Development</span> 
+             <span className="text-slate-600">/</span> 
+             <span>Web Development</span>
+          </div>
+
+          <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4">{service.title}</h1>
+          
+          {/* Seller Meta */}
+          <div className="flex flex-wrap items-center gap-4 border-b border-slate-800 pb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-lg">
+                {service.seller.image}
               </div>
-              <div className="h-8 w-px bg-slate-800"></div>
-              <div className="flex items-center gap-1 text-yellow-400 font-bold">
+              <div>
+                <h3 className="font-bold text-sm hover:underline cursor-pointer">{service.seller.name}</h3>
+                <p className="text-xs text-indigo-400 font-medium">{service.seller.level}</p>
+              </div>
+            </div>
+            <div className="hidden md:block h-8 w-px bg-slate-800"></div>
+            <div className="flex items-center gap-1 text-yellow-400 font-bold">
                  <Star size={16} fill="currentColor" /> {service.rating}
                  <span className="text-slate-400 font-normal">({service.reviews})</span>
-              </div>
-              <div className="h-8 w-px bg-slate-800"></div>
-              <div className="text-slate-400 text-sm">
-                <span className="text-white font-bold">{service.ordersInQueue}</span> Orders in Queue
-              </div>
+            </div>
+            <div className="hidden md:block h-8 w-px bg-slate-800"></div>
+            <div className="text-slate-400 text-sm">
+              <span className="text-white font-bold">{service.ordersInQueue}</span> Orders in Queue
             </div>
           </div>
 
-          {/* Image Gallery (Placeholder for now) */}
+          {/* Image Gallery Placeholder */}
           <div className="w-full aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center relative group overflow-hidden">
              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
              <span className="text-slate-600 font-medium">Project Image Gallery (Carousal)</span>
-             {/* Hover Actions */}
              <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                <button className="bg-slate-900/80 p-2 rounded-full hover:text-red-500 transition backdrop-blur-md"><Heart size={20} /></button>
                <button className="bg-slate-900/80 p-2 rounded-full hover:text-indigo-500 transition backdrop-blur-md"><Share2 size={20} /></button>
@@ -83,22 +94,22 @@ export default function ServiceDetails() {
           {/* Description */}
           <div className="bg-slate-900/30 p-8 rounded-2xl border border-slate-800/50">
             <h3 className="text-xl font-bold mb-4">About This Gig</h3>
-            <div className="prose prose-invert prose-slate max-w-none text-slate-300">
+            <div className="prose prose-invert prose-slate max-w-none text-slate-300 leading-relaxed">
               <p className="mb-4">
                 Looking for a <b>high-performance website</b> that stands out? You are in the right place. 
                 I specialize in building scalable, secure, and beautiful web applications using Next.js and Tailwind CSS.
               </p>
-              <h4 className="text-white font-bold mb-2">Why Choose Me?</h4>
-              <ul className="space-y-2 mb-4">
-                <li className="flex gap-2"><Check size={18} className="text-green-500 shrink-0" /> <span>Modern "Nebula" Design Aesthetics</span></li>
-                <li className="flex gap-2"><Check size={18} className="text-green-500 shrink-0" /> <span>100% Mobile Responsive</span></li>
-                <li className="flex gap-2"><Check size={18} className="text-green-500 shrink-0" /> <span>SEO Optimized Code</span></li>
+              <h4 className="text-white font-bold mb-3 mt-6">Why Choose Me?</h4>
+              <ul className="space-y-3 mb-4">
+                <li className="flex gap-3"><Check size={18} className="text-green-500 shrink-0 mt-1" /> <span>Modern "Nebula" Design Aesthetics</span></li>
+                <li className="flex gap-3"><Check size={18} className="text-green-500 shrink-0 mt-1" /> <span>100% Mobile Responsive</span></li>
+                <li className="flex gap-3"><Check size={18} className="text-green-500 shrink-0 mt-1" /> <span>SEO Optimized Code & Fast Loading</span></li>
               </ul>
             </div>
           </div>
 
-          {/* FAQ Accordion (Static for UI) */}
-          <div className="space-y-4">
+          {/* FAQ Accordion */}
+          <div className="space-y-4 pt-4">
             <h3 className="text-xl font-bold">Frequently Asked Questions</h3>
             <div className="border border-slate-800 rounded-xl overflow-hidden">
               <button className="w-full flex justify-between items-center p-4 bg-slate-900 hover:bg-slate-800 transition text-left">
@@ -133,13 +144,13 @@ export default function ServiceDetails() {
             {/* Pricing Content */}
             <div className="p-8">
               <div className="flex justify-between items-end mb-6">
-                <h3 className="font-bold text-lg text-white">{currentPkg.title}</h3>
+                <h3 className="font-bold text-lg text-white capitalize">{currentPkg.title}</h3>
                 <span className="text-3xl font-bold text-white">${currentPkg.price}</span>
               </div>
               
-              <p className="text-slate-400 text-sm mb-6 min-h-[40px]">{currentPkg.desc}</p>
+              <p className="text-slate-400 text-sm mb-6 min-h-[40px] leading-relaxed">{currentPkg.desc}</p>
 
-              <div className="flex items-center gap-6 text-sm font-semibold text-slate-300 mb-8">
+              <div className="flex flex-col gap-3 text-sm font-semibold text-slate-300 mb-8">
                 <div className="flex items-center gap-2">
                   <Clock size={16} className="text-indigo-400" />
                   <span>{currentPkg.delivery} Delivery</span>
@@ -152,9 +163,14 @@ export default function ServiceDetails() {
 
               {/* Action Buttons */}
               <div className="space-y-3">
-                <button className="w-full bg-green-500 hover:bg-green-600 text-black font-bold py-3.5 rounded-xl transition shadow-lg shadow-green-500/20 flex items-center justify-center gap-2">
+                {/* 👇 Ab 'id' use kar rahe hain jo use() se mili hai */}
+                <Link 
+                  href={`/checkout/${id}`} 
+                  className="w-full bg-green-500 hover:bg-green-600 text-black font-bold py-3.5 rounded-xl transition shadow-lg shadow-green-500/20 flex items-center justify-center gap-2"
+                >
                    Continue (${currentPkg.price}) <ArrowRight size={18} />
-                </button>
+                </Link>
+
                 <button className="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 rounded-xl transition border border-slate-700 flex items-center justify-center gap-2">
                    <MessageCircle size={18} /> Contact Seller
                 </button>

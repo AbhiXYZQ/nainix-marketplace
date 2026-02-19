@@ -13,14 +13,14 @@ export default function SearchPage() {
 
   // --- MOCK DATA (Services) ---
   const services = [
-    { id: 1, title: "I will build a 3D animated website", seller: "Rahul Dev", rating: 5.0, reviews: 42, price: 150, image: "bg-indigo-900", tag: "Pro" },
-    { id: 2, title: "I will design a modern logo for tech startup", seller: "Naina Art", rating: 4.9, reviews: 128, price: 45, image: "bg-purple-900", tag: "Level 2" },
-    { id: 3, title: "I will secure your server from hackers", seller: "Cyber Safe", rating: 5.0, reviews: 15, price: 300, image: "bg-slate-800", tag: "Top Rated" },
-    { id: 4, title: "I will write SEO content for your blog", seller: "Writer Pro", rating: 4.8, reviews: 65, price: 30, image: "bg-blue-900", tag: "Level 1" },
-    { id: 5, title: "I will create a mobile app in React Native", seller: "App Master", rating: 4.7, reviews: 22, price: 500, image: "bg-indigo-950", tag: "Pro" },
-    { id: 6, title: "I will edit your YouTube gaming videos", seller: "Editor X", rating: 5.0, reviews: 9, price: 60, image: "bg-pink-900", tag: "New" },
-    { id: 7, title: "I will setup your AWS cloud infrastructure", seller: "Cloud King", rating: 4.9, reviews: 30, price: 200, image: "bg-cyan-900", tag: "Level 2" },
-    { id: 8, title: "I will create viral Instagram reels", seller: "Social Buzz", rating: 4.6, reviews: 110, price: 25, image: "bg-red-900", tag: "Level 1" },
+    { id: 1, sellerId: 1, title: "I will build a 3D animated website", seller: "Rahul Dev", rating: 5.0, reviews: 42, price: 150, image: "bg-indigo-900", tag: "Pro" },
+    { id: 2, sellerId: 2, title: "I will design a modern logo for tech startup", seller: "Naina Art", rating: 4.9, reviews: 128, price: 45, image: "bg-purple-900", tag: "Level 2" },
+    { id: 3, sellerId: 3, title: "I will secure your server from hackers", seller: "Cyber Safe", rating: 5.0, reviews: 15, price: 300, image: "bg-slate-800", tag: "Top Rated" },
+    { id: 4, sellerId: 4, title: "I will write SEO content for your blog", seller: "Writer Pro", rating: 4.8, reviews: 65, price: 30, image: "bg-blue-900", tag: "Level 1" },
+    { id: 5, sellerId: 5, title: "I will create a mobile app in React Native", seller: "App Master", rating: 4.7, reviews: 22, price: 500, image: "bg-indigo-950", tag: "Pro" },
+    { id: 6, sellerId: 6, title: "I will edit your YouTube gaming videos", seller: "Editor X", rating: 5.0, reviews: 9, price: 60, image: "bg-pink-900", tag: "New" },
+    { id: 7, sellerId: 7, title: "I will setup your AWS cloud infrastructure", seller: "Cloud King", rating: 4.9, reviews: 30, price: 200, image: "bg-cyan-900", tag: "Level 2" },
+    { id: 8, sellerId: 8, title: "I will create viral Instagram reels", seller: "Social Buzz", rating: 4.6, reviews: 110, price: 25, image: "bg-red-900", tag: "Level 1" },
   ];
 
   return (

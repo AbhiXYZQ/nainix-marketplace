@@ -1,6 +1,7 @@
 "use client";
 
-import { DollarSign, ShoppingBag, Star, TrendingUp, Clock, MoreHorizontal, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { DollarSign, ShoppingBag, Star, TrendingUp, Clock, MoreHorizontal, ArrowUpRight, Inbox, Wallet, PlusCircle } from "lucide-react";
 
 export default function DashboardOverview() {
   
@@ -14,6 +15,19 @@ export default function DashboardOverview() {
   return (
     <div className="space-y-8 animate-fade-in-up">
       
+      {/* Quick Navigation Links */}
+      <div className="flex flex-wrap gap-3 mb-4">
+        <Link href="/dashboard/inbox" className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-sm font-bold transition">
+          <Inbox size={16} /> Inbox
+        </Link>
+        <Link href="/dashboard/wallet" className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-sm font-bold transition">
+          <Wallet size={16} /> Wallet
+        </Link>
+        <Link href="/create-service" className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-bold transition">
+          <PlusCircle size={16} /> Post a Gig
+        </Link>
+      </div>
+
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
         <div>

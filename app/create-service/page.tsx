@@ -22,6 +22,15 @@ export default function CreateService() {
     <main className="min-h-screen bg-slate-950 text-white font-sans selection:bg-indigo-500 selection:text-white pb-20">
       <Navbar />
 
+      {/* Breadcrumbs */}
+      <div className="pt-24 pb-2 px-6 flex items-center gap-2 text-xs text-slate-500">
+        <Link href="/" className="hover:text-slate-300">Home</Link>
+        <span>/</span>
+        <Link href="/dashboard" className="hover:text-slate-300">Dashboard</Link>
+        <span>/</span>
+        <span className="text-slate-300">Create Service</span>
+      </div>
+
       {/* --- PROGRESS BAR (Top) --- */}
       <div className="pt-24 pb-8 border-b border-slate-800 bg-slate-950/50 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-3xl mx-auto px-6">
