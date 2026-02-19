@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 import { useState } from "react";
 import { ChevronRight, Upload, DollarSign, LayoutTemplate, Image as ImageIcon, CheckCircle2 } from "lucide-react";
 
